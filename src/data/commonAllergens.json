@@ -1,0 +1,205 @@
+[
+  {
+    "id": "milk",
+    "label": "Milk / Dairy",
+    "category": "Food",
+    "aliases": ["milk", "dairy", "lactose", "casein", "whey", "butter", "cream", "cheese", "yogurt", "lactalbumin", "lactoglobulin"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "eggs",
+    "label": "Eggs",
+    "category": "Food",
+    "aliases": ["egg", "eggs", "albumin", "globulin", "lecithin", "lysozyme", "mayonnaise", "meringue", "ovalbumin"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "fish",
+    "label": "Fish",
+    "category": "Food",
+    "aliases": ["fish", "bass", "flounder", "cod", "salmon", "tuna", "tilapia", "halibut", "anchovy", "anchovies", "sardine", "mahi", "pollock", "snapper", "trout", "pike", "sole"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "shellfish",
+    "label": "Shellfish / Crustaceans",
+    "category": "Food",
+    "aliases": ["shellfish", "crustacean", "shrimp", "crab", "lobster", "crayfish", "prawn", "barnacle", "krill"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "molluscs",
+    "label": "Molluscs",
+    "category": "Food",
+    "aliases": ["mollusc", "mollusk", "clam", "mussel", "oyster", "scallop", "squid", "octopus", "abalone", "snail", "escargot"],
+    "source": ["EU 14"]
+  },
+  {
+    "id": "tree-nuts",
+    "label": "Tree Nuts",
+    "category": "Food",
+    "aliases": ["tree nut", "almond", "cashew", "walnut", "pecan", "pistachio", "hazelnut", "macadamia", "brazil nut", "chestnut", "coconut", "pine nut", "pinon", "praline", "marzipan", "gianduja", "nougat"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "peanuts",
+    "label": "Peanuts",
+    "category": "Food",
+    "aliases": ["peanut", "peanuts", "groundnut", "groundnuts", "monkey nut", "arachis oil", "beer nuts", "mixed nuts"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "wheat",
+    "label": "Wheat / Gluten",
+    "category": "Food",
+    "aliases": ["wheat", "gluten", "spelt", "kamut", "farro", "durum", "semolina", "bulgur", "farina", "triticale", "einkorn", "emmer", "flour", "breadcrumbs", "rye", "barley", "oats", "malt"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "soy",
+    "label": "Soy",
+    "category": "Food",
+    "aliases": ["soy", "soya", "soybean", "tofu", "tempeh", "miso", "edamame", "tamari", "textured vegetable protein", "tvp", "hydrolyzed soy"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "sesame",
+    "label": "Sesame",
+    "category": "Food",
+    "aliases": ["sesame", "tahini", "til", "gingelly", "benne", "sesame oil", "sesame seed"],
+    "source": ["FDA Big 9", "EU 14"]
+  },
+  {
+    "id": "celery",
+    "label": "Celery",
+    "category": "Food",
+    "aliases": ["celery", "celeriac", "celery seed", "celery salt"],
+    "source": ["EU 14"]
+  },
+  {
+    "id": "mustard",
+    "label": "Mustard",
+    "category": "Food",
+    "aliases": ["mustard", "mustard seed", "mustard oil", "mustard flour", "mustard leaves"],
+    "source": ["EU 14"]
+  },
+  {
+    "id": "sulphites",
+    "label": "Sulphites / Sulfites",
+    "category": "Food",
+    "aliases": ["sulphite", "sulfite", "sulphur dioxide", "sulfur dioxide", "sodium metabisulphite", "potassium metabisulphite", "e220", "e221", "e222", "e223", "e224", "e225", "e226", "e227", "e228"],
+    "source": ["EU 14"]
+  },
+  {
+    "id": "lupin",
+    "label": "Lupin",
+    "category": "Food",
+    "aliases": ["lupin", "lupine", "lupin flour", "lupin seed"],
+    "source": ["EU 14"]
+  },
+  {
+    "id": "fragrance",
+    "label": "Fragrance / Parfum",
+    "category": "Fragrance",
+    "aliases": ["fragrance", "parfum", "perfume", "aroma", "linalool", "limonene", "citronellol", "geraniol", "eugenol", "cinnamal", "citral", "farnesol", "benzyl alcohol", "benzyl salicylate", "coumarin", "isoeugenol", "anise alcohol", "benzyl benzoate", "benzyl cinnamate", "hydroxycitronellal", "amyl cinnamal", "amylcinnamyl alcohol", "cinnamyl alcohol", "hexyl cinnamal", "lilial", "lyral", "methyl heptine carbonate", "oakmoss", "treemoss"],
+    "source": ["EU Cosmetics Regulation"]
+  },
+  {
+    "id": "parabens",
+    "label": "Parabens",
+    "category": "Preservatives",
+    "aliases": ["paraben", "methylparaben", "ethylparaben", "propylparaben", "butylparaben", "isobutylparaben", "isopropylparaben"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "formaldehyde",
+    "label": "Formaldehyde / Formaldehyde-releasing preservatives",
+    "category": "Preservatives",
+    "aliases": ["formaldehyde", "formalin", "quaternium-15", "dmdm hydantoin", "imidazolidinyl urea", "diazolidinyl urea", "bronopol", "2-bromo-2-nitropropane-1,3-diol", "hydroxymethylglycinate"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "mit",
+    "label": "Methylisothiazolinone (MIT / MCI)",
+    "category": "Preservatives",
+    "aliases": ["methylisothiazolinone", "methylchloroisothiazolinone", "mit", "mci", "kathon", "isothiazolinone", "benzisothiazolinone", "bit", "chloromethylisothiazolinone"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "phenoxyethanol",
+    "label": "Phenoxyethanol",
+    "category": "Preservatives",
+    "aliases": ["phenoxyethanol", "2-phenoxyethanol", "ethylene glycol monophenyl ether"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "sls",
+    "label": "Sodium Lauryl Sulfate (SLS / SLES)",
+    "category": "Surfactants",
+    "aliases": ["sodium lauryl sulfate", "sodium lauryl sulphate", "sls", "sodium laureth sulfate", "sodium laureth sulphate", "sles", "ammonium lauryl sulfate", "ammonium laureth sulfate"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "propylene-glycol",
+    "label": "Propylene Glycol",
+    "category": "Solvents & Humectants",
+    "aliases": ["propylene glycol", "1,2-propanediol", "propanediol"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "lanolin",
+    "label": "Lanolin",
+    "category": "Emollients",
+    "aliases": ["lanolin", "wool wax", "wool grease", "wool fat", "adeps lanae", "lanolin alcohol", "acetylated lanolin", "anhydrous lanolin"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "nickel",
+    "label": "Nickel",
+    "category": "Metals",
+    "aliases": ["nickel", "nickel sulfate", "nickel chloride"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "cobalt",
+    "label": "Cobalt",
+    "category": "Metals",
+    "aliases": ["cobalt", "cobalt chloride", "cobalt sulfate", "cobalt naphthenate"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "chromium",
+    "label": "Chromium",
+    "category": "Metals",
+    "aliases": ["chromium", "chromate", "potassium dichromate", "chromium sulfate"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "latex",
+    "label": "Latex / Natural Rubber",
+    "category": "Latex & Rubber",
+    "aliases": ["latex", "natural rubber", "rubber", "hevea", "hevea brasiliensis", "caoutchouc"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "benzophenone",
+    "label": "Benzophenone / UV Filters",
+    "category": "UV Filters",
+    "aliases": ["benzophenone", "oxybenzone", "benzophenone-3", "benzophenone-4", "avobenzone", "homosalate", "octinoxate", "octisalate", "octocrylene"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "p-phenylenediamine",
+    "label": "PPD / Hair Dye",
+    "category": "Dyes & Colorants",
+    "aliases": ["p-phenylenediamine", "ppd", "paraphenylenediamine", "para-phenylenediamine", "1,4-diaminobenzene", "4-aminoaniline", "oxidative hair dye", "permanent hair color"],
+    "source": ["Common sensitizer"]
+  },
+  {
+    "id": "glycols",
+    "label": "Glycols (Butylene / Hexylene)",
+    "category": "Solvents & Humectants",
+    "aliases": ["butylene glycol", "hexylene glycol", "caprylyl glycol", "pentylene glycol"],
+    "source": ["Common sensitizer"]
+  }
+]
