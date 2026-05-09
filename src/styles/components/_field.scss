@@ -1,0 +1,67 @@
+@use '../tokens' as *;
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  display: block;
+  font-size: $text-caption;
+  font-weight: $fw-medium;
+  color: var(--fg-2);
+  margin-bottom: 6px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: 10px 14px;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  transition:
+    border-color $dur-fast $ease-soft,
+    box-shadow   $dur-fast $ease-soft;
+
+  &:focus-within {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px rgba(76, 132, 163, 0.20);
+  }
+
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font: inherit;
+    color: var(--fg-1);
+    background: transparent;
+    min-width: 0;
+
+    &::placeholder { color: var(--fg-3); }
+  }
+
+  .icon { color: var(--fg-3); }
+
+  // Error state
+  &--error {
+    border-color: var(--color-flag);
+
+    &:focus-within {
+      box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.20);
+    }
+  }
+}
+
+.field-help {
+  font-size: $text-xs;
+  color: var(--fg-3);
+  margin-top: 6px;
+}
+
+.field-error-msg {
+  font-size: $text-xs;
+  color: var(--color-flag);
+  margin-top: 6px;
+}

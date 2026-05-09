@@ -1,0 +1,128 @@
+@use '../tokens' as *;
+
+.verdict {
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  // ---- Verdict states ----
+
+  &--safe  { background: var(--color-primary-soft); }
+  &--maybe { background: var(--color-tertiary-soft); }
+  &--found { background: var(--color-flag-bg); }
+
+  // ---- Badge (Safe / Maybe / Found label) ----
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: 6px 14px 6px 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: $fw-semibold;
+    font-size: $text-xs;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    width: fit-content;
+
+    .icon-bubble {
+      width: 22px;
+      height: 22px;
+      border-radius: $radius-pill;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+  }
+
+  &--safe  .icon-bubble { background: var(--color-primary);  color: var(--color-primary-on); }
+  &--maybe .icon-bubble { background: var(--color-tertiary); }
+  &--found .icon-bubble { background: var(--color-flag); }
+
+  // ---- Verdict headline ----
+
+  &__h {
+    font-family: var(--font-heading);
+    font-weight: $fw-semibold;
+    font-size: $text-h2;
+    margin: 4px 0 0;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+  }
+
+  &__sub {
+    font-size: $text-label;
+    color: var(--fg-2);
+    margin-top: 2px;
+  }
+
+  // ---- Allergen breakdown list ----
+
+  &__body {
+    margin-top: var(--space-3);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: $space-2 0;
+      border-top: 1px solid var(--color-grey-1);
+
+      &:first-child { border-top: none; }
+    }
+
+    .item-name {
+      font-weight: $fw-medium;
+      color: var(--fg-1);
+      font-size: $text-label;
+    }
+
+    .item-trace {
+      font-family: var(--font-mono);
+      font-size: $text-xs;
+      color: var(--fg-3);
+      margin-top: 2px;
+    }
+  }
+
+  // ---- Confidence pill (Found / Maybe / Safe) ----
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: $radius-pill;
+    font-family: var(--font-heading);
+    font-weight: $fw-semibold;
+    font-size: $text-xxs;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+
+    &--found { background: var(--color-flag-bg);       color: var(--color-flag-on); }
+    &--maybe { background: var(--color-tertiary-soft);  color: var(--color-tertiary-on); }
+    &--safe  { background: var(--color-primary-soft);   color: var(--color-primary-on); }
+  }
+
+  // ---- Action row ----
+
+  &__actions {
+    display: flex;
+    gap: $space-2;
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+}

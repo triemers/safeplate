@@ -1,0 +1,39 @@
+@use '../tokens' as *;
+
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--color-grey-1);
+  border-radius: var(--radius-pill);
+  gap: 4px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: $fw-semibold;
+  font-size: $text-caption;
+  color: var(--fg-2);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    background $dur-fast $ease-soft,
+    color      $dur-fast $ease-soft;
+
+  &:hover { color: var(--color-text); }
+
+  &[aria-selected="true"] {
+    background: var(--color-white);
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: -2px;
+  }
+}

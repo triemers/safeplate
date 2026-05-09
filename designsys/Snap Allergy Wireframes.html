@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Snap Allergy — MVP wireframes</title>
+<link rel="stylesheet" href="wireframes.css" />
+<style>
+  /* Scope tweaks for the canvas itself */
+  body { background: #E9E6DD; }
+  .frame-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .frame-row.cols-3 { /* phones in a row */ }
+  .annos-after {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 200px;
+    padding-top: 30px;
+  }
+  .frame-caption {
+    font-family: var(--note);
+    font-size: 18px;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 10px;
+  }
+  .frame-caption .num {
+    color: var(--mint);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  /* annotation arrow doodles */
+  .arrow-down { font-family: var(--note); font-size: 28px; color: var(--ink); opacity: 0.5; line-height: 1; transform: rotate(-15deg); }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background:#E9E6DD">
+      <rect x="22" y="22" width="56" height="56" rx="8" fill="#FBFAF6" stroke="#2A2A28" stroke-width="2"/>
+      <rect x="32" y="34" width="36" height="3" fill="#D2D2D2"/>
+      <rect x="32" y="42" width="28" height="3" fill="#D2D2D2"/>
+      <rect x="32" y="52" width="36" height="10" rx="3" fill="#4BD79A" stroke="#2A2A28" stroke-width="1.5"/>
+    </svg>
+  </template>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="screens.jsx"></script>
+
+  <script type="text/babel">
+    const W = window.SnapWireframes;
+    const {
+      Phone, AppBar, TabBar, Anno, AnnoArrow,
+      Home_TabNav, Home_SingleFlow, Home_FabPattern,
+      List_Empty, List_ManualSearch, List_Upload, List_ExtractionReview, List_Populated,
+      Scan_Entry, Scan_Camera, Scan_Captured, Scan_Reading,
+      Result_Found, Result_Maybe, Result_Clear,
+      Future_Onboarding, Future_SavedSheets, Future_SavedProducts, Future_SearchByName,
+    } = W;
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "showAnnotations": true,
+      "showFutureSection": true,
+      "accent": "mint"
+    }/*EDITMODE-END*/;
+
+    // Tiny helper to wrap a phone in a column with a caption underneath
+    const Frame = ({ caption, num, children, annos, wide }) => (
+      <div style={{ display: "flex", gap: 18, alignItems: "flex-start" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {children}
+          {caption && (
+            <div className="frame-caption">
+              {num && <span className="num">{num}</span>}
+              {caption}
+            </div>
+          )}
+        </div>
+        {annos && annos.length > 0 && window.__SHOW_ANNOS !== false && (
+          <div className="annos-after">{annos}</div>
+        )}
+      </div>
+    );
+
+    function App() {
+      const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+      window.__SHOW_ANNOS = t.showAnnotations;
+
+      const A = (props) => t.showAnnotations ? <Anno {...props} /> : null;
+
+      return (
+        <React.Fragment>
+          <DesignCanvas
+            title="Snap Allergy — MVP wireframes"
+            subtitle="Mobile-first · lo-fi · mapped to the user-flow diagram. Three navigation directions, then the full happy path through allergen list → scan → result."
+          >
+            {/* =========== 1. Navigation directions =========== */}
+            <DCSection
+              id="nav"
+              title="01 · Three navigation directions"
+              subtitle="Same MVP, three home screens. Pick a chassis before we polish anything else."
+            >
+              <DCArtboard id="nav-tabs" label="A · Tab bar (recommended)" width={560} height={780}>
+                <Frame
+                  num="A"
+                  caption="Tab bar — Scan-first home"
+                  annos={[
+                    <A key="1" color="blue">Scan is the primary tab. List & Saved (post-MVP) live one tap away.</A>,
+                    <A key="2">Recent scans build trust on the home screen — even before saved-history ships.</A>,
+                    <A key="3" color="pink">"Saved" tab greyed out — placeholder for post-MVP product history.</A>,
+                  ]}
+                >
+                  <Home_TabNav />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="nav-single" label="B · Single-flow" width={560} height={780}>
+                <Frame
+                  num="B"
+                  caption="Single-flow — list visible up top"
+                  annos={[
+                    <A key="1" color="blue">Allergen list always in view as a quick reference and edit hook.</A>,
+                    <A key="2">No bottom nav — every action is a vertical step on one screen.</A>,
+                    <A key="3" color="pink">"Search by name" listed but disabled — flagged as post-MVP.</A>,
+                  ]}
+                >
+                  <Home_SingleFlow />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="nav-fab" label="C · List-first + FAB" width={560} height={780}>
+                <Frame
+                  num="C"
+                  caption="List-first — camera on a FAB"
+                  annos={[
+                    <A key="1" color="blue">Home is the allergen list. Camera FAB floats above for fast scans.</A>,
+                    <A key="2">Recent scans inline so the home isn't just a list of chips.</A>,
+                  ]}
+                >
+                  <Home_FabPattern />
+                </Frame>
+              </DCArtboard>
+            </DCSection>
+
+            {/* =========== 2. Allergen list flow =========== */}
+            <DCSection
+              id="list"
+              title="02 · Build your allergen list"
+              subtitle="Empty → manual or upload → review → saved. Maps to the left half of the flow chart (manual search + file upload + 'User updates list' loop)."
+            >
+              <DCArtboard id="list-empty" label="2a · Empty state" width={560} height={780}>
+                <Frame
+                  num="2a"
+                  caption="Empty state — first time"
+                  annos={[
+                    <A key="1" color="blue">Two-path entry: search OR upload, exactly the two branches in the flow chart.</A>,
+                    <A key="2">"Quick add" chips give a 1-tap path for the most common cases.</A>,
+                  ]}
+                >
+                  <List_Empty />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="list-search" label="2b · Manual search" width={560} height={780}>
+                <Frame
+                  num="2b"
+                  caption="Search & add"
+                  annos={[
+                    <A key="1">Aliases shown inline (lactose, casein…) so users learn the canonical name.</A>,
+                    <A key="2" color="pink">"Already in your list" prevents dupes — quietly muted, not an error.</A>,
+                  ]}
+                >
+                  <List_ManualSearch />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="list-upload" label="2c · Upload file" width={560} height={780}>
+                <Frame
+                  num="2c"
+                  caption="Upload allergy list"
+                  annos={[
+                    <A key="1" color="blue">Accepts PDF, Excel, image, doc — same set as the flow chart.</A>,
+                    <A key="2">Camera fallback for users who only have a paper list.</A>,
+                    <A key="3" color="pink">Privacy reassurance is on every file-handling screen.</A>,
+                  ]}
+                >
+                  <List_Upload />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="list-review" label="2d · Extraction review" width={560} height={780}>
+                <Frame
+                  num="2d"
+                  caption="Review what we extracted"
+                  annos={[
+                    <A key="1" color="blue">Confidence per row — high / likely / low. Low matches default OFF; user opts in.</A>,
+                    <A key="2">This screen handles the "App scans PDF and extracts allergen list" node — but with a human gate before save.</A>,
+                  ]}
+                >
+                  <List_ExtractionReview />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="list-pop" label="2e · Saved list" width={560} height={780}>
+                <Frame
+                  num="2e"
+                  caption="Saved — and editable"
+                  annos={[
+                    <A key="1">"Update list" loop in the flow = this screen's edit & + actions.</A>,
+                    <A key="2" color="pink">"Sheets" button greyed out — placeholder for multi-sheet feature post-MVP.</A>,
+                  ]}
+                >
+                  <List_Populated />
+                </Frame>
+              </DCArtboard>
+            </DCSection>
+
+            {/* =========== 3. Scan flow =========== */}
+            <DCSection
+              id="scan"
+              title="03 · Capture a product label"
+              subtitle="Entry → camera or upload → review → reading. Covers the central column of the flow chart."
+            >
+              <DCArtboard id="scan-entry" label="3a · Scan entry" width={560} height={780}>
+                <Frame
+                  num="3a"
+                  caption="How would you like to check?"
+                  annos={[
+                    <A key="1" color="blue">Two MVP paths active; two post-MVP paths visibly there but dashed.</A>,
+                    <A key="2" color="pink">Layout already accommodates the future "search by name" + "snap product front" rows.</A>,
+                  ]}
+                >
+                  <Scan_Entry />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="scan-camera" label="3b · Camera" width={560} height={780}>
+                <Frame
+                  num="3b"
+                  caption="Camera viewfinder"
+                  annos={[
+                    <A key="1">Mint corner guides cue the user to fit the label cleanly — better OCR.</A>,
+                    <A key="2" color="blue">Upload icon on the bottom-left = same path as 3a, accessible mid-flow.</A>,
+                  ]}
+                >
+                  <Scan_Camera />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="scan-captured" label="3c · Use this photo?" width={560} height={780}>
+                <Frame
+                  num="3c"
+                  caption="Confirm before reading"
+                  annos={[
+                    <A key="1">Retake / Check — explicit gate before we burn OCR cycles.</A>,
+                  ]}
+                >
+                  <Scan_Captured />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="scan-reading" label="3d · Reading label…" width={560} height={780}>
+                <Frame
+                  num="3d"
+                  caption="OCR in progress"
+                  annos={[
+                    <A key="1" color="blue">Indeterminate progress (per brand spec — no spinners). Status copy is honest about what's happening.</A>,
+                  ]}
+                >
+                  <Scan_Reading />
+                </Frame>
+              </DCArtboard>
+            </DCSection>
+
+            {/* =========== 4. Result screens =========== */}
+            <DCSection
+              id="results"
+              title="04 · Verdict screens"
+              subtitle="The right edge of the flow chart — Found / No allergens — plus the Maybe state called out in PROJECT.md."
+            >
+              <DCArtboard id="res-found" label="4a · Found" width={560} height={820}>
+                <Frame
+                  num="4a"
+                  caption="Allergens found"
+                  annos={[
+                    <A key="1" color="pink">Verdict hero: badge + plain-English count + chips of what was found.</A>,
+                    <A key="2" color="blue">Alternates appear right below — closes the loop on the "alternate products" flow-chart node.</A>,
+                    <A key="3">Each alternate is itself tagged with its own verdict so users can cross-check fast.</A>,
+                  ]}
+                >
+                  <Result_Found />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="res-maybe" label="4b · Maybe" width={560} height={820}>
+                <Frame
+                  num="4b"
+                  caption="Possible match — verify"
+                  annos={[
+                    <A key="1">Maybe state — for OCR fuzziness or alias ambiguity (e.g. "EDA").</A>,
+                    <A key="2" color="blue">User can resolve directly: Mark safe / unsafe trains future scans.</A>,
+                  ]}
+                >
+                  <Result_Maybe />
+                </Frame>
+              </DCArtboard>
+
+              <DCArtboard id="res-clear" label="4c · Looks safe" width={560} height={820}>
+                <Frame
+                  num="4c"
+                  caption="Looks safe — tentative"
+                  annos={[
+                    <A key="1" color="pink">"Tentative" tone is mandatory per the flow chart — never declare 100% clear.</A>,
+                    <A key="2">"Save" button greyed out for now — will activate when product-history ships.</A>,
+                  ]}
+                >
+                  <Result_Clear />
+                </Frame>
+              </DCArtboard>
+            </DCSection>
+
+            {/* =========== 5. Post-MVP placeholders =========== */}
+            {t.showFutureSection && (
+              <DCSection
+                id="future"
+                title="05 · Post-MVP — sketches only"
+                subtitle="Not in the MVP build, but the IA above is shaped to receive these without rework. Loose sketches so we don't paint into a corner."
+              >
+                <DCArtboard id="fut-onb" label="5a · Onboarding / login" width={420} height={780}>
+                  <Frame num="5a" caption="Onboarding splash">
+                    <Future_Onboarding />
+                  </Frame>
+                </DCArtboard>
+
+                <DCArtboard id="fut-sheets" label="5b · Saved allergy sheets" width={420} height={780}>
+                  <Frame num="5b" caption="Multi-sheet (e.g. family)">
+                    <Future_SavedSheets />
+                  </Frame>
+                </DCArtboard>
+
+                <DCArtboard id="fut-saved" label="5c · Saved products" width={420} height={780}>
+                  <Frame num="5c" caption="Scan history & saved products">
+                    <Future_SavedProducts />
+                  </Frame>
+                </DCArtboard>
+
+                <DCArtboard id="fut-search" label="5d · Search by product name" width={420} height={780}>
+                  <Frame num="5d" caption="Search by product name">
+                    <Future_SearchByName />
+                  </Frame>
+                </DCArtboard>
+              </DCSection>
+            )}
+          </DesignCanvas>
+
+          <TweaksPanel title="Tweaks">
+            <TweakSection title="Display">
+              <TweakToggle
+                label="Show annotations"
+                value={t.showAnnotations}
+                onChange={(v) => setTweak("showAnnotations", v)}
+              />
+              <TweakToggle
+                label="Show post-MVP section"
+                value={t.showFutureSection}
+                onChange={(v) => setTweak("showFutureSection", v)}
+              />
+            </TweakSection>
+          </TweaksPanel>
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

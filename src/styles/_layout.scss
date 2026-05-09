@@ -1,0 +1,85 @@
+@use 'tokens' as *;
+
+// ---- Page shell ----
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ---- Sticky header ----
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: $space-7;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .word {
+      font-family: var(--font-heading);
+      font-weight: $fw-semibold;
+      font-size: 19px;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+  }
+
+  .nav {
+    margin-left: auto;
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+
+    a {
+      font-family: var(--font-heading);
+      font-weight: $fw-semibold;
+      font-size: $text-caption;
+      color: var(--fg-2);
+      text-decoration: none;
+      transition: color $dur-fast $ease-soft;
+
+      &:hover { color: var(--color-secondary); }
+    }
+  }
+}
+
+// ---- Main content grid ----
+
+.page-main {
+  flex: 1;
+  width: 100%;
+  max-width: $bp-desktop;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-7);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-5);
+
+  @media (max-width: #{$bp-tablet}) {
+    grid-template-columns: 1fr;
+    padding: var(--space-4) var(--space-3) var(--space-6);
+  }
+}
+
+// Vertical flex column inside the grid
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

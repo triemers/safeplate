@@ -1,0 +1,84 @@
+@use '../tokens' as *;
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-secondary-tint);
+  color: var(--color-secondary-on);
+  font-family: var(--font-heading);
+  font-weight: $fw-semibold;
+  font-size: $text-caption;
+  border: none;
+  white-space: nowrap;
+
+  // Dismiss button inside the chip
+  &__x {
+    width: 18px;
+    height: 18px;
+    border-radius: $radius-pill;
+    background: var(--color-secondary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: $text-xs;
+    line-height: 1;
+    transition: opacity $dur-fast $ease-soft;
+
+    &:hover { opacity: 0.8; }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 2px;
+    }
+  }
+
+  // ---- Variants ----
+
+  &--food {
+    background: var(--color-primary-soft);
+    color: var(--color-primary-on);
+
+    .chip__x {
+      background: var(--color-primary);
+      color: var(--color-primary-on);
+    }
+  }
+
+  &--cosmetic {
+    background: var(--color-secondary-tint);
+    color: var(--color-secondary-on);
+  }
+
+  &--custom {
+    background: var(--color-tertiary-soft);
+    color: var(--color-tertiary-on);
+
+    .chip__x {
+      background: var(--color-tertiary);
+      color: #fff;
+    }
+  }
+
+  // Dashed "add" trigger
+  &--add {
+    background: transparent;
+    border: 1px dashed var(--color-grey-3);
+    color: var(--fg-2);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition:
+      border-color $dur-fast $ease-soft,
+      color        $dur-fast $ease-soft;
+
+    &:hover {
+      border-color: var(--color-secondary);
+      color: var(--color-secondary);
+    }
+  }
+}

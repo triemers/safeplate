@@ -1,0 +1,36 @@
+// Safeplate — design system entry point
+// Import order: tokens → base → layout → components
+// In main.jsx: import './styles/main.scss'
+
+@use 'tokens';
+@use 'base';
+@use 'layout';
+
+@use 'components/button';
+@use 'components/card';
+@use 'components/chip';
+@use 'components/field';
+@use 'components/tabs';
+@use 'components/allergen-row';
+@use 'components/verdict';
+@use 'components/capture';
+@use 'components/disclaimer';
+@use 'components/empty';
+
+// ---- Utility: fade-in animation ----
+// Applied as className="fade-in" on state-driven mounts
+
+.fade-in {
+  animation: fade-in var(--dur-slow) var(--ease-soft);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

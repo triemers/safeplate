@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Safeplate — Design System</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>
+
+/* ---- Layout ---- */
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-grey-1);
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 200px;
+  background: var(--color-white);
+  border-right: 1px solid var(--border-2);
+  overflow-y: auto;
+  padding: 24px 0;
+  z-index: 10;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border-2);
+  margin-bottom: 8px;
+}
+
+.nav-word {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.nav-section {
+  padding: 12px 20px 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nav a {
+  display: block;
+  padding: 7px 20px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--fg-2);
+  text-decoration: none;
+  transition: color 120ms, background 120ms;
+}
+
+.nav a:hover {
+  color: var(--color-text);
+  background: var(--color-grey-1);
+}
+
+.nav a.active {
+  color: var(--color-secondary);
+}
+
+.content {
+  margin-left: 200px;
+  flex: 1;
+  padding: 48px 48px 80px;
+  max-width: 900px;
+}
+
+/* ---- Section ---- */
+
+.sg-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 32px;
+}
+
+.sg-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.sg-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+}
+
+.sg-card {
+  background: var(--color-white);
+  border: 1px solid var(--border-1);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.sg-divider {
+  border: none;
+  border-top: 1px solid var(--border-2);
+  margin: 24px 0;
+}
+
+/* ---- Colors ---- */
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.color-grid.wide {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.swatch { display: flex; flex-direction: column; gap: 8px; }
+
+.swatch-chip {
+  aspect-ratio: 1.4 / 1;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.swatch-chip.bordered { border-color: var(--border-1); }
+
+.swatch-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+}
+
+.swatch-role {
+  font-size: 11px;
+  color: var(--fg-2);
+}
+
+.tint-stack {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #E8E8E8;
+}
+
+.tint-layer {
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-2);
+}
+
+.semantic-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.semantic-pair {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sem-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 100px;
+}
+
+.sem-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.sem-label { font-size: 13px; color: var(--fg-2); }
+.sem-hex { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); margin-left: auto; }
+
+/* ---- Typography ---- */
+
+.type-stack { display: flex; flex-direction: column; gap: 16px; }
+
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.type-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.type-row h1, .type-row h2, .type-row h3 { margin: 0; }
+
+.t-body    { font-size: 16px; color: var(--fg-1); line-height: 1.5; }
+.t-label   { font-size: 14px; font-weight: 500; color: var(--fg-2); }
+.t-caption { font-size: 13px; color: var(--fg-3); }
+
+.family-pair {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px 24px;
+  align-items: baseline;
+}
+
+.family-meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+.f-poppins { font-family: var(--font-heading); font-weight: 600; font-size: 26px; color: var(--color-text); letter-spacing: -0.01em; }
+.f-inter   { font-family: var(--font-body);    font-weight: 400; font-size: 18px; color: var(--fg-1); }
+.f-alpha   { font-family: var(--font-heading); font-weight: 600; font-size: 14px; color: var(--fg-2); letter-spacing: 0.04em; margin-top: 4px; }
+.f-alpha.body { font-family: var(--font-body); font-weight: 400; }
+
+/* ---- Spacing ---- */
+
+.space-rows { display: flex; flex-direction: column; gap: 10px; }
+
+.space-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.space-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-2);
+  width: 88px;
+}
+
+.space-bar {
+  background: var(--color-primary);
+  height: 10px;
+  border-radius: 999px;
+}
+
+.space-px {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+}
+
+/* ---- Radii ---- */
+
+.radii-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.radius-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.radius-box {
+  width: 88px;
+  height: 66px;
+  background: var(--color-primary-soft);
+  border: 1px solid #B7E6CD;
+}
+
+.radius-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.radius-px {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+}
+
+/* ---- Elevation ---- */
+
+.elev-row { display: flex; gap: 32px; flex-wrap: wrap; }
+
+.elev-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.elev-card {
+  width: 200px;
+  height: 80px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.elev-card.flat  { border: 1px solid var(--border-1); }
+.elev-card.float { box-shadow: 0 4px 20px rgba(20,30,40,0.06); }
+
+.elev-name { font-family: var(--font-heading); font-weight: 600; font-size: 12px; color: var(--color-text); }
+.elev-desc { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-align: center; max-width: 200px; }
+
+/* ---- Icons ---- */
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 16px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-item svg { width: 24px; height: 24px; color: var(--color-text); }
+.icon-name { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+.icon-note { margin-top: 16px; font-size: 12px; color: var(--fg-3); }
+
+/* ---- Logo ---- */
+
+.logo-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.logo-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-lab  { font-size: 11px; color: var(--fg-3); font-family: var(--font-mono); }
+.logo-note { font-size: 12px; color: var(--fg-2); max-width: 200px; text-align: center; line-height: 1.45; }
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-word {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+svg.mark { width: 56px; height: 56px; display: block; }
+
+/* ---- Buttons ---- */
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn svg { width: 16px; height: 16px; }
+.btn.primary   { background: #4BD79A; color: #103D2A; border-color: transparent; }
+.btn.secondary { background: #4C84A3; color: #fff; border-color: transparent; }
+.btn.ghost     { background: transparent; color: #4C84A3; border-color: #D2D2D2; }
+.btn.danger    { background: #FBE5E4; color: #7A1E1B; border-color: transparent; }
+.btn.disabled  { background: #D2D2D2; color: #999; cursor: not-allowed; border-color: transparent; }
+
+/* ---- Chips ---- */
+
+.chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 12px;
+  border-radius: 999px;
+  background: #ECF3F7;
+  color: #1F3D4D;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+}
+
+.chip .x {
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  background: #4C84A3;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip.add { background: #fff; border: 1px dashed #999; color: #666; padding: 6px 12px; }
+.chip.food { background: #DEF7EB; color: #103D2A; }
+.chip.food .x { background: #4BD79A; color: #103D2A; }
+.chip.warn { background: #F8E4D4; color: #7A3F1C; }
+.chip.warn .x { background: #E29B6E; color: #fff; }
+
+/* ---- Inputs ---- */
+
+.field-stack { display: flex; flex-direction: column; gap: 16px; max-width: 420px; }
+.field-label-sg { font-size: 13px; font-weight: 500; color: var(--fg-2); margin-bottom: 6px; display: block; }
+
+.field-sg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #D2D2D2;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.field-sg input { border: none; outline: none; flex: 1; font: inherit; color: var(--fg-1); background: transparent; }
+.field-sg.focused { border-color: #4C84A3; box-shadow: 0 0 0 2px rgba(76,132,163,.2); }
+.field-sg svg { width: 18px; height: 18px; color: #999; }
+.field-help-sg { font-size: 12px; color: var(--fg-3); margin-top: 4px; }
+
+/* ---- Tabs ---- */
+
+.tabs { display: inline-flex; padding: 4px; background: #F2F2F2; border-radius: 999px; gap: 4px; }
+
+.tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--fg-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+}
+
+.tab.active { background: #fff; color: var(--color-text); }
+.tab svg { width: 14px; height: 14px; }
+
+/* ---- Allergen list ---- */
+
+.alist-card {
+  background: #fff;
+  border: 1px solid #D2D2D2;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 460px;
+}
+
+.alist-card h3 { font-family: var(--font-heading); font-weight: 600; font-size: 18px; margin: 0 0 4px; color: var(--color-text); }
+.alist-sub { font-size: 13px; color: var(--fg-3); margin-bottom: 16px; }
+
+.a-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #F2F2F2;
+}
+.a-row:first-of-type { border-top: none; }
+.a-left { display: flex; align-items: center; gap: 12px; }
+.a-dot { width: 8px; height: 8px; border-radius: 50%; }
+.a-name { font-weight: 500; color: var(--fg-1); font-size: 14px; }
+.a-cat { font-size: 11px; color: var(--fg-3); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.a-x { width: 24px; height: 24px; border: none; background: transparent; color: #999; cursor: pointer; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ---- Capture target ---- */
+
+.capture-target {
+  max-width: 520px;
+  aspect-ratio: 16/9;
+  background: #ECF3F7;
+  border-radius: 24px;
+  border: 2px dashed #4C84A3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.capture-target svg { width: 36px; height: 36px; color: #4C84A3; }
+.cap-title { font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--color-text); }
+.cap-sub   { font-size: 13px; color: var(--fg-2); }
+.cap-row   { display: flex; gap: 8px; margin-top: 4px; }
+
+.cap-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.cap-btn.p { background: #4BD79A; color: #103D2A; }
+.cap-btn.s { background: transparent; color: #4C84A3; border: 1px solid #4C84A3; }
+
+/* ---- Verdict cards ---- */
+
+.verdict-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.vc {
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vc-icon {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vc-icon svg { width: 18px; height: 18px; }
+.vc-badge  { font-family: var(--font-heading); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.vc h4 { font-family: var(--font-heading); font-weight: 600; font-size: 18px; margin: 0; color: var(--color-text); }
+.vc p  { font-size: 13px; color: var(--fg-2); margin: 0; line-height: 1.4; }
+
+.vc.safe  { background: #DEF7EB; }
+.vc.safe  .vc-icon  { background: #4BD79A; color: #fff; }
+.vc.safe  .vc-badge { color: #103D2A; }
+
+.vc.maybe { background: #F8E4D4; }
+.vc.maybe .vc-icon  { background: #E29B6E; color: #fff; }
+.vc.maybe .vc-badge { color: #7A3F1C; }
+
+.vc.found { background: #FBE5E4; }
+.vc.found .vc-icon  { background: #D9534F; color: #fff; }
+.vc.found .vc-badge { color: #7A1E1B; }
+
+/* ---- Disclaimer ---- */
+
+.disclaimer-bar {
+  background: #F8E4D4;
+  border: 1px solid #E29B6E;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  max-width: 620px;
+}
+
+.disclaimer-bar svg { width: 18px; height: 18px; color: #B85F22; flex-shrink: 0; margin-top: 2px; }
+.disclaimer-bar p  { font-size: 13px; color: #5C2E10; line-height: 1.5; margin: 0; }
+.disclaimer-bar strong { color: #3D1E0A; font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+
+<nav class="nav">
+  <div class="nav-brand">
+    <svg width="28" height="28" viewBox="0 0 56 56">
+      <rect width="56" height="56" rx="14" fill="#4BD79A"/>
+      <rect x="10" y="14" width="36" height="28" rx="6" fill="#fff"/>
+      <g stroke="#4BD79A" stroke-width="1.8" stroke-linecap="round">
+        <line x1="14" y1="20" x2="32" y2="20"/>
+        <line x1="14" y1="25" x2="36" y2="25"/>
+        <line x1="14" y1="30" x2="28" y2="30"/>
+      </g>
+      <circle cx="40" cy="36" r="9" fill="#103D2A"/>
+      <circle cx="40" cy="36" r="5.5" fill="#4BD79A"/>
+      <polyline points="36.5 36 39 38.5 43.5 33.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-word">Safeplate</span>
+  </div>
+
+  <div class="nav-section">Brand</div>
+  <a href="#logo">Logo</a>
+
+  <div class="nav-section">Foundations</div>
+  <a href="#colors-brand">Colors — brand</a>
+  <a href="#colors-neutrals">Colors — neutrals</a>
+  <a href="#colors-semantic">Colors — semantic</a>
+  <a href="#colors-tints">Colors — tints</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#radii">Radii</a>
+  <a href="#elevation">Elevation</a>
+  <a href="#iconography">Iconography</a>
+
+  <div class="nav-section">Components</div>
+  <a href="#buttons">Buttons</a>
+  <a href="#chips">Chips</a>
+  <a href="#inputs">Inputs</a>
+  <a href="#tabs">Tabs</a>
+  <a href="#allergen-list">Allergen list</a>
+  <a href="#capture">Capture target</a>
+  <a href="#verdicts">Verdict cards</a>
+  <a href="#disclaimer">Disclaimer</a>
+</nav>
+
+<!-- ===================== CONTENT ===================== -->
+
+<main class="content">
+
+  <!-- LOGO -->
+  <section class="sg-section" id="logo">
+    <div class="sg-label">Brand</div>
+    <h2 class="sg-title">Logo</h2>
+    <div class="sg-card">
+      <div class="logo-row">
+        <div class="logo-stamp">
+          <svg class="mark" viewBox="0 0 56 56">
+            <rect width="56" height="56" rx="14" fill="#4BD79A"/>
+            <rect x="10" y="14" width="36" height="28" rx="6" fill="#FFFFFF"/>
+            <g stroke="#4BD79A" stroke-width="1.8" stroke-linecap="round">
+              <line x1="14" y1="20" x2="32" y2="20"/>
+              <line x1="14" y1="25" x2="36" y2="25"/>
+              <line x1="14" y1="30" x2="28" y2="30"/>
+            </g>
+            <circle cx="40" cy="36" r="9" fill="#103D2A"/>
+            <circle cx="40" cy="36" r="5.5" fill="#4BD79A"/>
+            <polyline points="36.5 36 39 38.5 43.5 33.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-lab">C · Primary mark</span>
+          <p class="logo-note">Label + camera + check. Reads "snap a label" literally.</p>
+        </div>
+        <div class="logo-stamp">
+          <svg class="mark" viewBox="0 0 56 56">
+            <rect width="56" height="56" rx="14" fill="#4BD79A"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round">
+              <path d="M11 18 L11 13 L16 13"/><path d="M45 18 L45 13 L40 13"/>
+              <path d="M11 38 L11 43 L16 43"/><path d="M45 38 L45 43 L40 43"/>
+            </g>
+            <g fill="#FFFFFF" transform="translate(28 28) rotate(-30) translate(-28 -28)">
+              <ellipse cx="24" cy="24" rx="6" ry="7"/>
+              <ellipse cx="33" cy="32" rx="6.5" ry="7.5"/>
+              <path d="M22 22 Q28 28 32 35" stroke="#FFFFFF" stroke-width="6" fill="none"/>
+            </g>
+            <circle cx="44" cy="14" r="7" fill="#D9534F" stroke="#FFFFFF" stroke-width="2"/>
+            <g stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round">
+              <line x1="41.5" y1="11.5" x2="46.5" y2="16.5"/>
+              <line x1="46.5" y1="11.5" x2="41.5" y2="16.5"/>
+            </g>
+          </svg>
+          <span class="logo-lab">A′ · Alt mark</span>
+          <p class="logo-note">Reticle + peanut with red × badge — "allergen detected."</p>
+        </div>
+        <div class="logo-stamp">
+          <div class="logo-lockup">
+            <svg class="mark" viewBox="0 0 56 56">
+              <rect width="56" height="56" rx="14" fill="#4BD79A"/>
+              <rect x="10" y="14" width="36" height="28" rx="6" fill="#FFFFFF"/>
+              <g stroke="#4BD79A" stroke-width="1.8" stroke-linecap="round">
+                <line x1="14" y1="20" x2="32" y2="20"/>
+                <line x1="14" y1="25" x2="36" y2="25"/>
+                <line x1="14" y1="30" x2="28" y2="30"/>
+              </g>
+              <circle cx="40" cy="36" r="9" fill="#103D2A"/>
+              <circle cx="40" cy="36" r="5.5" fill="#4BD79A"/>
+              <polyline points="36.5 36 39 38.5 43.5 33.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-word">Safeplate</span>
+          </div>
+          <span class="logo-lab">Lockup</span>
+          <p class="logo-note">Wordmark in Poppins SemiBold beside the primary mark.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS: BRAND -->
+  <section class="sg-section" id="colors-brand">
+    <div class="sg-label">Foundations</div>
+    <h2 class="sg-title">Colors — brand</h2>
+    <div class="sg-card">
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#4BD79A"></div>
+          <div class="swatch-name">Primary · Mint</div>
+          <div class="swatch-hex">#4BD79A</div>
+          <div class="swatch-role">Safe verdict · primary CTA</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#4C84A3"></div>
+          <div class="swatch-name">Secondary · Slate</div>
+          <div class="swatch-hex">#4C84A3</div>
+          <div class="swatch-role">Info · links · focus ring</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#E29B6E"></div>
+          <div class="swatch-name">Tertiary · Tangerine</div>
+          <div class="swatch-hex">#E29B6E</div>
+          <div class="swatch-role">Maybe verdict · warmth</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS: NEUTRALS -->
+  <section class="sg-section" id="colors-neutrals">
+    <h2 class="sg-title">Colors — neutrals</h2>
+    <div class="sg-card">
+      <div class="color-grid wide">
+        <div class="swatch">
+          <div class="swatch-chip bordered" style="background:#FFFFFF"></div>
+          <div class="swatch-name">White</div>
+          <div class="swatch-hex">#FFFFFF</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#F2F2F2"></div>
+          <div class="swatch-name">Grey 1</div>
+          <div class="swatch-hex">#F2F2F2</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#D2D2D2"></div>
+          <div class="swatch-name">Grey 2</div>
+          <div class="swatch-hex">#D2D2D2</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#999999"></div>
+          <div class="swatch-name">Grey 3</div>
+          <div class="swatch-hex">#999999</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#666666"></div>
+          <div class="swatch-name">Grey 4</div>
+          <div class="swatch-hex">#666666</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#444444"></div>
+          <div class="swatch-name">Text</div>
+          <div class="swatch-hex">#444444</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS: SEMANTIC -->
+  <section class="sg-section" id="colors-semantic">
+    <h2 class="sg-title">Colors — semantic</h2>
+    <div class="sg-card">
+      <div class="semantic-row">
+        <div class="semantic-pair">
+          <span class="sem-badge" style="background:#DEF7EB;color:#103D2A"><span class="sem-dot" style="background:#4BD79A"></span>Safe</span>
+          <span class="sem-label">No allergens found</span>
+          <span class="sem-hex">#4BD79A on #DEF7EB</span>
+        </div>
+        <div class="semantic-pair">
+          <span class="sem-badge" style="background:#F8E4D4;color:#7A3F1C"><span class="sem-dot" style="background:#E29B6E"></span>Maybe</span>
+          <span class="sem-label">Possible match — verify manually</span>
+          <span class="sem-hex">#E29B6E on #F8E4D4</span>
+        </div>
+        <div class="semantic-pair">
+          <span class="sem-badge" style="background:#FBE5E4;color:#7A1E1B"><span class="sem-dot" style="background:#D9534F"></span>Found</span>
+          <span class="sem-label">Allergen confirmed in label</span>
+          <span class="sem-hex">#D9534F on #FBE5E4</span>
+        </div>
+        <div class="semantic-pair">
+          <span class="sem-badge" style="background:#DCE8EF;color:#1F3D4D"><span class="sem-dot" style="background:#4C84A3"></span>Info</span>
+          <span class="sem-label">Did-you-mean · informational</span>
+          <span class="sem-hex">#4C84A3 on #DCE8EF</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS: TINTS -->
+  <section class="sg-section" id="colors-tints">
+    <h2 class="sg-title">Colors — tints</h2>
+    <div class="sg-card">
+      <div class="color-grid">
+        <div>
+          <div class="swatch-name" style="margin-bottom:8px">Mint surfaces</div>
+          <div class="tint-stack">
+            <div class="tint-layer" style="background:#4BD79A;color:#103D2A">primary · #4BD79A</div>
+            <div class="tint-layer" style="background:#DEF7EB">primary-soft · #DEF7EB</div>
+            <div class="tint-layer" style="background:#E9FBF2">primary-tint · #E9FBF2</div>
+          </div>
+        </div>
+        <div>
+          <div class="swatch-name" style="margin-bottom:8px">Slate surfaces</div>
+          <div class="tint-stack">
+            <div class="tint-layer" style="background:#4C84A3;color:#fff">secondary · #4C84A3</div>
+            <div class="tint-layer" style="background:#DCE8EF">secondary-soft · #DCE8EF</div>
+            <div class="tint-layer" style="background:#ECF3F7">secondary-tint · #ECF3F7</div>
+          </div>
+        </div>
+        <div>
+          <div class="swatch-name" style="margin-bottom:8px">Tangerine surfaces</div>
+          <div class="tint-stack">
+            <div class="tint-layer" style="background:#E29B6E;color:#fff">tertiary · #E29B6E</div>
+            <div class="tint-layer" style="background:#F8E4D4">tertiary-soft · #F8E4D4</div>
+            <div class="tint-layer" style="background:#FCF1E6">tertiary-tint · #FCF1E6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="sg-section" id="typography">
+    <h2 class="sg-title">Typography</h2>
+    <div class="sg-card">
+      <div class="family-pair" style="margin-bottom:24px">
+        <span class="family-meta">Headings</span>
+        <div>
+          <div class="f-poppins">Poppins SemiBold</div>
+          <div class="f-alpha">ABCDEFGHIJKLMN abcdefghijklmn 0123456789</div>
+        </div>
+        <span class="family-meta">Body</span>
+        <div>
+          <div class="f-inter">Inter Regular &amp; Medium</div>
+          <div class="f-alpha body">ABCDEFGHIJKLMN abcdefghijklmn 0123456789</div>
+        </div>
+      </div>
+      <hr class="sg-divider"/>
+      <div class="type-stack">
+        <div class="type-row">
+          <span class="type-meta">H1 · 44 · 600</span>
+          <h1>Looks safe.</h1>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">H2 · 32 · 600</span>
+          <h2>Your allergens</h2>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">H3 · 22 · 600</span>
+          <h3>Scan a product label</h3>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">Body · 16 · 400</span>
+          <span class="t-body">Type, pick from common allergens, or upload your allergy list.</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">Label · 14 · 500</span>
+          <span class="t-label">Add an allergen</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">Caption · 13 · 400</span>
+          <span class="t-caption">FDA Big 9 + EU 14 covered</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">Mono · 14</span>
+          <code>imidazolidinyl-urea</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section class="sg-section" id="spacing">
+    <h2 class="sg-title">Spacing</h2>
+    <div class="sg-card">
+      <div class="space-rows">
+        <div class="space-row"><span class="space-name">--space-1</span><span class="space-bar" style="width:4px"></span><span class="space-px">4 px</span></div>
+        <div class="space-row"><span class="space-name">--space-2</span><span class="space-bar" style="width:8px"></span><span class="space-px">8 px · base</span></div>
+        <div class="space-row"><span class="space-name">--space-3</span><span class="space-bar" style="width:16px"></span><span class="space-px">16 px</span></div>
+        <div class="space-row"><span class="space-name">--space-4</span><span class="space-bar" style="width:24px"></span><span class="space-px">24 px · card padding</span></div>
+        <div class="space-row"><span class="space-name">--space-5</span><span class="space-bar" style="width:32px"></span><span class="space-px">32 px · section</span></div>
+        <div class="space-row"><span class="space-name">--space-6</span><span class="space-bar" style="width:48px"></span><span class="space-px">48 px</span></div>
+        <div class="space-row"><span class="space-name">--space-7</span><span class="space-bar" style="width:64px"></span><span class="space-px">64 px · page header</span></div>
+        <div class="space-row"><span class="space-name">--space-8</span><span class="space-bar" style="width:96px"></span><span class="space-px">96 px</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RADII -->
+  <section class="sg-section" id="radii">
+    <h2 class="sg-title">Radii</h2>
+    <div class="sg-card">
+      <div class="radii-row">
+        <div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><div class="radius-name">sm</div><div class="radius-px">4 px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><div class="radius-name">md · base</div><div class="radius-px">8 px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><div class="radius-name">lg</div><div class="radius-px">16 px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><div class="radius-name">xl</div><div class="radius-px">24 px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:999px"></div><div class="radius-name">pill</div><div class="radius-px">999 px</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELEVATION -->
+  <section class="sg-section" id="elevation">
+    <h2 class="sg-title">Elevation</h2>
+    <div class="sg-card">
+      <div class="elev-row">
+        <div class="elev-item">
+          <div class="elev-card flat">Flat (default)</div>
+          <div class="elev-name">No shadow</div>
+          <div class="elev-desc">Buttons, cards, modals</div>
+        </div>
+        <div class="elev-item">
+          <div class="elev-card float">Soft float</div>
+          <div class="elev-name">--shadow-soft</div>
+          <div class="elev-desc">Popovers &amp; dropdowns only · 0 4px 20px rgba(20,30,40,.06)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICONOGRAPHY -->
+  <section class="sg-section" id="iconography">
+    <h2 class="sg-title">Iconography</h2>
+    <div class="sg-card">
+      <div class="icon-grid">
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7l1.5-2h3L15 7"/><circle cx="12" cy="13.5" r="3.5"/></svg><span class="icon-name">camera</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 21h14"/></svg><span class="icon-name">upload</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="icon-name">check</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg><span class="icon-name">x</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.86a2 2 0 0 1 3.4 0l8.5 14.7A2 2 0 0 1 20.5 22h-17a2 2 0 0 1-1.7-3.45z"/></svg><span class="icon-name">alert</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span class="icon-name">search</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V4l-8-2-8 2v6c0 8 8 12 8 12z"/></svg><span class="icon-name">shield</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4c-2 4-6 5-9 5 0 7 4 11 9 11 5 0 9-4 9-11-3 0-7-1-9-5z"/></svg><span class="icon-name">leaf</span></div>
+      </div>
+      <p class="icon-note">Lucide · stroke 1.75 · sizes 16 / 20 / 24 px · always currentColor</p>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="sg-section" id="buttons">
+    <div class="sg-label">Components</div>
+    <h2 class="sg-title">Buttons</h2>
+    <div class="sg-card">
+      <div class="btn-row">
+        <button class="btn primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Mark as safe
+        </button>
+        <button class="btn secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7l1.5-2h3L15 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+          Scan a label
+        </button>
+        <button class="btn ghost">Cancel</button>
+        <button class="btn danger">Remove</button>
+        <button class="btn disabled" disabled>Disabled</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIPS -->
+  <section class="sg-section" id="chips">
+    <h2 class="sg-title">Chips</h2>
+    <div class="sg-card">
+      <div class="chip-wrap">
+        <span class="chip food">Milk / Dairy<span class="x">×</span></span>
+        <span class="chip food">Peanuts<span class="x">×</span></span>
+        <span class="chip">Fragrance / Parfum<span class="x">×</span></span>
+        <span class="chip warn">Custom: EDA<span class="x">×</span></span>
+        <span class="chip">Sesame<span class="x">×</span></span>
+        <span class="chip">SLS / SLES<span class="x">×</span></span>
+        <span class="chip add">+ Add allergen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUTS -->
+  <section class="sg-section" id="inputs">
+    <h2 class="sg-title">Inputs</h2>
+    <div class="sg-card">
+      <div class="field-stack">
+        <div>
+          <label class="field-label-sg">Type an allergen</label>
+          <div class="field-sg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input value="peanut" readonly/>
+          </div>
+          <div class="field-help-sg">Match found · Peanuts (FDA Big 9)</div>
+        </div>
+        <div>
+          <label class="field-label-sg">Search common allergens</label>
+          <div class="field-sg focused">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4C84A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input placeholder='Try "sesame" or "soy"' readonly/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <section class="sg-section" id="tabs">
+    <h2 class="sg-title">Tabs</h2>
+    <div class="sg-card">
+      <div class="tabs">
+        <span class="tab active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 21h14"/></svg>
+          Type
+        </span>
+        <span class="tab">Pick common</span>
+        <span class="tab">Upload list</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALLERGEN LIST -->
+  <section class="sg-section" id="allergen-list">
+    <h2 class="sg-title">Allergen list</h2>
+    <div class="sg-card">
+      <div class="alist-card">
+        <h3>Your allergens</h3>
+        <div class="alist-sub">4 things you avoid · saved this session</div>
+        <div class="a-row"><div class="a-left"><span class="a-dot" style="background:#4BD79A"></span><span><div class="a-name">Milk / Dairy</div><div class="a-cat">Food</div></span></div><button class="a-x">×</button></div>
+        <div class="a-row"><div class="a-left"><span class="a-dot" style="background:#4BD79A"></span><span><div class="a-name">Peanuts</div><div class="a-cat">Food</div></span></div><button class="a-x">×</button></div>
+        <div class="a-row"><div class="a-left"><span class="a-dot" style="background:#4C84A3"></span><span><div class="a-name">Fragrance / Parfum</div><div class="a-cat">Fragrance</div></span></div><button class="a-x">×</button></div>
+        <div class="a-row"><div class="a-left"><span class="a-dot" style="background:#E29B6E"></span><span><div class="a-name">EDA <span style="font-size:11px;color:var(--fg-3);font-weight:400">· custom</span></div><div class="a-cat">Custom</div></span></div><button class="a-x">×</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPTURE TARGET -->
+  <section class="sg-section" id="capture">
+    <h2 class="sg-title">Capture target</h2>
+    <div class="sg-card">
+      <div class="capture-target">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7l1.5-2h3L15 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+        <div class="cap-title">Snap a label</div>
+        <div class="cap-sub">Point at the ingredients panel — we'll do the rest</div>
+        <div class="cap-row">
+          <button class="cap-btn p">Open camera</button>
+          <button class="cap-btn s">Upload file</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT CARDS -->
+  <section class="sg-section" id="verdicts">
+    <h2 class="sg-title">Verdict cards</h2>
+    <div class="sg-card">
+      <div class="verdict-grid">
+        <div class="vc safe">
+          <div class="vc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="vc-badge">Safe</span>
+          <h4>Looks safe.</h4>
+          <p>No allergens from your list were found in this label.</p>
+        </div>
+        <div class="vc maybe">
+          <div class="vc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.86a2 2 0 0 1 3.4 0l8.5 14.7A2 2 0 0 1 20.5 22h-17a2 2 0 0 1-1.7-3.45z"/></svg></div>
+          <span class="vc-badge">Maybe</span>
+          <h4>Possible match.</h4>
+          <p>"EDA" might refer to Ethylenediamine. Check the full label.</p>
+        </div>
+        <div class="vc found">
+          <div class="vc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg></div>
+          <span class="vc-badge">Found</span>
+          <h4>Contains 2 allergens.</h4>
+          <p>Milk / Dairy and Soy were found in the ingredients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="sg-section" id="disclaimer">
+    <h2 class="sg-title">Disclaimer</h2>
+    <div class="sg-card">
+      <div class="disclaimer-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.86a2 2 0 0 1 3.4 0l8.5 14.7A2 2 0 0 1 20.5 22h-17a2 2 0 0 1-1.7-3.45z"/></svg>
+        <p><strong>Safeplate is a checking aid, not medical advice.</strong> OCR is imperfect — blurry photos or curved bottles may produce inaccurate results. Always verify with the manufacturer if you have a severe allergy. Your files and photos never leave your device.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+@use '../tokens' as *;
+
+// ---- Base button ----
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: $fw-semibold;
+  font-size: 15px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--fg-1);
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background    $dur-fast $ease-soft,
+    color         $dur-fast $ease-soft,
+    border-color  $dur-fast $ease-soft,
+    transform     $dur-fast $ease-soft;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+
+  &:active { transform: translateY(1px); }
+
+  // ---- Variants ----
+
+  &--primary {
+    background: var(--color-primary);
+    color: var(--color-primary-on);
+
+    &:hover { background: #{$color-primary-hover}; }
+  }
+
+  &--secondary {
+    background: var(--color-secondary);
+    color: #fff;
+
+    &:hover { background: #{$color-secondary-hover}; }
+  }
+
+  &--ghost {
+    border-color: var(--border-1);
+    color: var(--color-secondary);
+    background: var(--color-white);
+
+    &:hover { background: var(--color-secondary-tint); }
+  }
+
+  &--danger {
+    background: var(--color-flag-bg);
+    color: var(--color-flag-on);
+
+    &:hover { background: #{$color-flag-hover}; }
+  }
+
+  // ---- Sizes ----
+
+  &--lg { padding: 14px 22px; font-size: $text-body; }
+  &--sm { padding: 6px 12px;  font-size: $text-caption; }
+
+  // ---- Width modifier ----
+
+  &--block { width: 100%; }
+
+  // ---- Disabled state ----
+
+  &[disabled],
+  &--disabled {
+    background:   var(--color-grey-2) !important;
+    color:        var(--color-grey-3) !important;
+    border-color: transparent !important;
+    cursor:       not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ---- Round icon-only button ----
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-pill;
+  border: 1px solid var(--border-1);
+  background: var(--color-white);
+  color: var(--fg-3);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    color        $dur-fast $ease-soft,
+    border-color $dur-fast $ease-soft;
+
+  &:hover {
+    color: var(--color-flag);
+    border-color: var(--color-flag);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+}

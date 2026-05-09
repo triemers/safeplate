@@ -1,0 +1,196 @@
+// ============================================================
+// TOKENS — Safeplate Design System
+// All raw values live here. Component files use @use '../tokens' as *
+// ============================================================
+
+// --- Colors: Brand ---
+$color-primary:        #4BD79A;
+$color-primary-soft:   #DEF7EB;
+$color-primary-tint:   #E9FBF2;
+$color-primary-on:     #103D2A;   // text on primary surfaces
+$color-primary-hover:  #5cdfa6;   // slightly lighter mint
+
+$color-secondary:      #4C84A3;
+$color-secondary-soft: #DCE8EF;
+$color-secondary-tint: #ECF3F7;
+$color-secondary-on:   #1F3D4D;   // text on secondary tint
+$color-secondary-hover:#5b94b3;
+
+$color-tertiary:       #E29B6E;
+$color-tertiary-soft:  #F8E4D4;
+$color-tertiary-tint:  #FCF1E6;
+$color-tertiary-on:    #7A3F1C;   // text on tangerine surfaces
+
+// --- Colors: Semantic ---
+$color-flag:      #D9534F;
+$color-flag-bg:   #FBE5E4;
+$color-flag-on:   #7A1E1B;        // text on flag bg
+$color-flag-hover:#f9d6d4;
+
+// --- Colors: Neutrals ---
+$color-white:  #FFFFFF;
+$color-grey-1: #F2F2F2;
+$color-grey-2: #D2D2D2;
+$color-grey-3: #999999;
+$color-grey-4: #666666;
+$color-text:   #444444;
+
+// --- Surfaces ---
+$bg-app:  $color-white;
+$bg-card: $color-white;
+
+// --- Foreground hierarchy ---
+$fg-1: $color-text;    // primary body text
+$fg-2: $color-grey-4;  // secondary text, labels
+$fg-3: $color-grey-3;  // muted text, captions, icons
+
+// --- Borders ---
+$border-1: $color-grey-2;  // card and input hairlines
+$border-2: #E8E8E8;        // lighter hairline (sticky header)
+
+// --- Typography ---
+$font-heading: 'Poppins', sans-serif;
+$font-body:    'Inter', sans-serif;
+$font-mono:    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
+
+// --- Type scale ---
+$text-display: 44px;
+$text-h2:      32px;
+$text-h3:      22px;
+$text-h4:      16px;
+$text-h5:      14px;
+$text-h6:      13px;
+$text-body:    16px;
+$text-label:   14px;
+$text-caption: 13px;
+$text-xs:      12px;
+$text-xxs:     11px;
+
+// --- Spacing (8px grid) ---
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 16px;
+$space-4: 24px;
+$space-5: 32px;
+$space-6: 48px;
+$space-7: 64px;
+$space-8: 96px;
+
+// --- Radii ---
+$radius-sm:   4px;
+$radius-md:   8px;
+$radius-lg:   16px;
+$radius-xl:   24px;
+$radius-pill: 999px;
+
+// --- Shadows ---
+$shadow-soft: 0 4px 20px rgba(20, 30, 40, 0.06);
+
+// --- Animation ---
+$ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+$dur-fast:  120ms;
+$dur-mid:   200ms;
+$dur-slow:  320ms;
+
+// --- Breakpoints ---
+$bp-mobile:  600px;
+$bp-tablet:  900px;
+$bp-desktop: 1120px;
+
+
+// ============================================================
+// CSS CUSTOM PROPERTIES — runtime tokens, exposed to all files
+// ============================================================
+
+:root {
+  // Colors: Brand
+  --color-primary:         #{$color-primary};
+  --color-primary-soft:    #{$color-primary-soft};
+  --color-primary-tint:    #{$color-primary-tint};
+  --color-primary-on:      #{$color-primary-on};
+
+  --color-secondary:       #{$color-secondary};
+  --color-secondary-soft:  #{$color-secondary-soft};
+  --color-secondary-tint:  #{$color-secondary-tint};
+  --color-secondary-on:    #{$color-secondary-on};
+
+  --color-tertiary:        #{$color-tertiary};
+  --color-tertiary-soft:   #{$color-tertiary-soft};
+  --color-tertiary-tint:   #{$color-tertiary-tint};
+  --color-tertiary-on:     #{$color-tertiary-on};
+
+  // Colors: Semantic
+  --color-flag:    #{$color-flag};
+  --color-flag-bg: #{$color-flag-bg};
+  --color-flag-on: #{$color-flag-on};
+
+  // Colors: Neutrals
+  --color-white:  #{$color-white};
+  --color-grey-1: #{$color-grey-1};
+  --color-grey-2: #{$color-grey-2};
+  --color-grey-3: #{$color-grey-3};
+  --color-grey-4: #{$color-grey-4};
+  --color-text:   #{$color-text};
+
+  // Surfaces & foregrounds
+  --bg-app:  #{$bg-app};
+  --bg-card: #{$bg-card};
+  --fg-1:    #{$fg-1};
+  --fg-2:    #{$fg-2};
+  --fg-3:    #{$fg-3};
+
+  // Borders
+  --border-1: #{$border-1};
+  --border-2: #{$border-2};
+
+  // Typography
+  --font-heading: #{$font-heading};
+  --font-body:    #{$font-body};
+  --font-mono:    #{$font-mono};
+
+  --fw-regular:  #{$fw-regular};
+  --fw-medium:   #{$fw-medium};
+  --fw-semibold: #{$fw-semibold};
+
+  --text-display: #{$text-display};
+  --text-h2:      #{$text-h2};
+  --text-h3:      #{$text-h3};
+  --text-h4:      #{$text-h4};
+  --text-h5:      #{$text-h5};
+  --text-h6:      #{$text-h6};
+  --text-body:    #{$text-body};
+  --text-label:   #{$text-label};
+  --text-caption: #{$text-caption};
+  --text-xs:      #{$text-xs};
+  --text-xxs:     #{$text-xxs};
+
+  // Spacing
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-5: #{$space-5};
+  --space-6: #{$space-6};
+  --space-7: #{$space-7};
+  --space-8: #{$space-8};
+
+  // Radii
+  --radius-sm:   #{$radius-sm};
+  --radius-md:   #{$radius-md};
+  --radius-lg:   #{$radius-lg};
+  --radius-xl:   #{$radius-xl};
+  --radius-pill: #{$radius-pill};
+
+  // Shadows
+  --shadow-soft: #{$shadow-soft};
+
+  // Animation
+  --ease-soft: #{$ease-soft};
+  --dur-fast:  #{$dur-fast};
+  --dur-mid:   #{$dur-mid};
+  --dur-slow:  #{$dur-slow};
+}

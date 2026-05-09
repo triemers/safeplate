@@ -1,0 +1,31 @@
+@use '../tokens' as *;
+
+// Permanent disclaimer banner — always visible, never dismissed
+.disclaimer {
+  background: var(--color-grey-1);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  p {
+    font-size: $text-caption;
+    color: var(--fg-2);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 880px;
+  }
+
+  strong {
+    color: var(--color-text);
+    font-weight: $fw-semibold;
+  }
+}
